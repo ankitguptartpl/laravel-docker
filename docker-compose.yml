@@ -1,0 +1,79 @@
+version: '2'
+services:
+  server:
+    build: server
+    ports:
+      - 3000:80
+    tty: true
+    restart: always
+    networks:
+        - main
+    volumes:
+      - ./server/htdocs:/var/www/html
+    links:
+      - mysql
+    #environment:                    ############## For access only ###################
+      #DB_HOST: 127.0.0.1            # Any host
+      #DB_DATABASE: database_name    # Database name to be connected
+      #DB_USERNAME: root             # Username of database ( can be root or other user )
+      #DB_PASSWORD: ranosys          # Password of user ( can be root username password )
+  mysql:
+    image: mysql:8.0.22
+    command: ['--default-authentication-plugin=mysql_native_password']
+    restart: always
+    networks:
+        - main
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - 13306:3306
+    environment:
+      #MYSQL_DATABASE: laravel-lucid       # database name to be created after mysql install ( Optional )
+      #MYSQL_USER: "database_username"    # Any user which have access of above database ( Optional )
+      #MYSQL_PASSWORD: "ranosys"          # Password of above user ( Optional )
+      MYSQL_ROOT_PASSWORD: ranosys        # Mysql root user password
+  redis:
+    image: redis:6.0.9
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: always
+    hostname: redis
+    networks:
+      - main
+    volumes:
+      - ./redis-data:/data
+  phpmyadmin:
+        image: phpmyadmin:latest
+        container_name: phpmyadmin
+        environment:
+            PMA_ARBITRARY: 0
+            PMA_HOST: mysql
+            PMA_PORT: 3306            # Internal port no of mysql
+            #PMA_USER: root           # phpmyadmin username
+            #PMA_PASSWORD: ranosys    # phpmyadmin password
+        restart: always
+        ports:
+            - 4000:80
+        links:
+            - mysql
+        volumes:
+            - /sessions
+        networks:
+            - main
+  phpredisadmin:
+        image: erikdubbelboer/phpredisadmin
+        container_name: phpredisadmin
+        environment:
+          - REDIS_1_HOST=redis
+          - REDIS_1_PORT=6379
+        restart: always
+        ports:
+            - 5000:80
+        links:
+            - redis
+        volumes:
+            - /sessions
+        networks:
+            - main
+networks:
+    main:
+        driver: bridge

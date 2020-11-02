@@ -1,0 +1,2 @@
+name,email_address,mobile_country_code,mobile_no,password,is_email_verified,is_mobile_verified,is_blocked,role_slug
+Super Admin,arif.khan@ranosys.com,62,85695556,ranosys@123,1,1,0,super_admin
