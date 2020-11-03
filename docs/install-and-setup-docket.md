@@ -110,9 +110,9 @@ chmod +x /usr/local/bin/docker-compose
 ### Create Docker Image and Container
 * Run folowing command ( Clone dfm-docker repository)
 ```
-git clone https://git.ranosys.org/arif.khan/laravel-microservice.git
+git clone https://git.ranosys.org/ranosys/group_buy.git
 ```
-This will create a docker directory staructure.
+This will create a docker directory structure.
 
 #### Directory Structure of Docker
 ```

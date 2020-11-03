@@ -6,7 +6,7 @@
 
 
 ## Setup Project
-* Create a git branch name `service/feature/tast-1` from [Group Buy Git Repository](https://git.ranosys.org/arif.khan/laravel-microservice.git)
+* Create a git branch name `service/feature/tast-1` from [Group Buy Git Repository](https://git.ranosys.org/ranosys/group_buy.git)
 * Go to project root directory
 * Make Yourself owner of server folder from `server` folder
 ```
