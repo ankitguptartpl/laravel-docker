@@ -3,47 +3,32 @@
 @extends('layouts.login-layout')
 @section('content')
     <div class="animate form login_form">
-        <section class="login_content">
-            <a href="{{url('/')}}" class="">
-                <img src="{{asset('public/frontend/images/logo1.png')}}" alt="{{config('app.name')}} Logo"
-                     title="{{config('app.name')}}">
-            </a>
-            {{ Form::open(['url' => route('auth.login'),'id'=>'authentication','class'=>'form-signin','novalidate'=>true]) }}
-            <h1>Admin Login</h1>
-            <div>
-                {{Form::email('email_address',NULL,['class'=>'form-control','placeholder'=>'Please Enter Email','autofocus'])}}
-                <div class="error">{{ $errors->first('email_address') }}</div>
+        <div class="auth-container">
+            <div class="auth-content">
+                <!-- form -->
+                {{ Form::open(['url' => route('auth.login'),'id'=>'authentication','novalidate'=>true]) }}
+                    <img src="{{asset('theme/images/logo.png')}}" alt="logo" class="logo">
+                    <h2 class="title">Hey there!</h2>
+                    <small class="subtext">Welcome</small>
+                    <div class="input-fields-wrapper">
+                        <div class="input-field">
+                            {{Form::email('email_address',NULL,['placeholder'=>'Email ID','autofocus'])}}
+                            <p class="validation-msg"></p>
+                        </div>
+                        <div class="input-field">
+                            {{Form::password('password',['placeholder'=>'Password'])}}
+                            <p class="validation-msg"></p>
+{{--                            <div class="error">{{ $errors->first('email_address') }}</div>--}}
+                            <img src="{{asset('theme/images/eye.png')}}" alt="eye" class="eye-icon">
+                        </div>
+                    </div>
+                    <div class="text-right forgot-link">
+                        <a href="{{route('auth.forgot-password.view')}}" class="theme-color text-uppercase">Forgot Password?</a>
+                    </div>
+                    {{Form::hidden('current_timezone',NULL,['id'=>'current-timezone'])}}
+                    <button type="button" class="btn btn-primary">sign in</button>
+                </form>
             </div>
-            <div>
-                {{Form::password('password',['class'=>'form-control','placeholder'=>'Please Enter Password'])}}
-                <div class="error">{{ $errors->first('password') }}</div>
-            </div>
-            {{Form::hidden('current_timezone',NULL,['id'=>'current-timezone'])}}
-            <div>
-                <button class="btn btn-primary col-md-12 submit" type="submit">Log in</button>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="separator">
-                <p class="change_link">Forgot Password?
-                    <a href="{{route('auth.forgot-password.view')}}" class="to_register"> Click here to reset </a>
-                </p>
-                <div>
-                    <p>{{'©'.date('Y').' All Rights Reserved '.config('app.name')}}</p>
-                </div>
-            </div>
-            </form>
-        </section>
+        </div>
     </div>
-@stop
-@section('page_scripts')
-    <script src="{{assets("custom/js/get-timezone.js")}}"></script>
-    <script type="text/javascript">
-        $(function() {
-            let tz = jstz.determine();
-            let timezone = tz.name();
-            $('#current-timezone').val(timezone);
-        });
-    </script>
 @stop
