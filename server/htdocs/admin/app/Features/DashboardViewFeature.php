@@ -32,7 +32,8 @@ class DashboardViewFeature extends Feature
     public function handle(Request $request)
     {
         return $this->run(ReturnWithViewJob::class,[
-            'template' => 'dashboard.index'
+            'template' => 'dashboard.index',
+            'data' => ['title' => 'Dashboard']
         ]);
     }
 }

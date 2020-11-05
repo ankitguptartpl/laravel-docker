@@ -26,7 +26,7 @@
                         <a href="{{route('auth.forgot-password.view')}}" class="theme-color text-uppercase">Forgot Password?</a>
                     </div>
                     {{Form::hidden('current_timezone',NULL,['id'=>'current-timezone'])}}
-                    <button type="button" class="btn btn-primary">sign in</button>
+                    <button type="submit" class="btn btn-primary">sign in</button>
                 </form>
             </div>
         </div>

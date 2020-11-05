@@ -10,7 +10,7 @@ return [
     */
 
     'after_login_redirect_url' => [
-        'super_admin' => 'dashboard'
+        'super_admin' => 'admin.dashboard'
     ],
     'static_values' => [
         'is_blocked' => [

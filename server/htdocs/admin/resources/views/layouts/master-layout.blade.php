@@ -4,17 +4,26 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-    @include('includes.master.navigation')
-    @include('includes.master.header')
-        <div class="right_col" role="main">
-            <div class="">
-                @include('includes.master.flash-messages')
-                @yield('content')
+        <!-- sidebar menu -->
+            @include('includes.master.sidebar-menu')
+            <!-- /sidebar menu -->
+
+            <!-- top navigation -->
+            @include('includes.master.top-navigation')
+            <!-- /top navigation -->
+
+            <div class="right_col" role="main">
+            <!-- page content -->
+            @include('includes.master.flash-messages')
+
+            @yield('content')
+            <!-- /page content -->
             </div>
-        </div>
-        @include('includes.master.footer')
+
+{{--            @include('includes.master.footer')--}}
     </div>
 </div>
+
 @include('includes.master.scripts')
 </body>
 </html>

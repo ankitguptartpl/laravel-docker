@@ -1,19 +1,14 @@
+<!-- jQuery -->
+<script src="{{asset('theme/js/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
-<script src="{{assets("theme/js/bootstrap.bundle.min.js")}}"></script>
-<!-- NProgress -->
-<script src="{{assets("theme/js/nprogress.js")}}"></script>
+<script src="{{asset('theme/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Datatables -->
+<script src="{{asset('theme/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('theme/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('theme/js/dataTables.scroller.min.js')}}"></script>
+
 <!-- Custom Theme Scripts -->
-<script src="{{assets("theme/js/custom.js")}}"></script>
-
-<script>
-    $(".alert").delay(5000).fadeOut();
-</script>
-
-<!-- show loader before loading of a page -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#page-loader").fadeOut("slow");
-    })
-</script>
+<script src="{{asset('theme/js/custom.min.js')}}"></script>
 
 @yield('page_scripts')

@@ -16,7 +16,7 @@ use Lucid\Foundation\Job;
  */
 class RedirectWithSuccessJob extends Job
 {
-    protected $redirect_route_name;
+    protected $redirect_route_name = null;
     protected $success_message;
     protected $route_param;
 
@@ -56,6 +56,6 @@ class RedirectWithSuccessJob extends Job
             request()->session()->flash(config('custom-config.response.flash_message.flash_success_message_key'), $this->success_message);
         }
 
-        return redirect()->route($this->redirect_route_name, $this->route_param);
+        return empty($this->redirect_route_name) ? redirect()->back() : redirect()->route($this->redirect_route_name, $this->route_param);
     }
 }

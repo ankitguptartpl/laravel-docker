@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | to using a Closure or controller method. Build something great!
 |
 */
+use App\Http\Controllers\CmsPagesController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
 
 /**-----------------------------< Start Admin route without Auth >---------------------------------*/
 
@@ -34,9 +37,15 @@ Route::get('/logout',['as'=>'auth.logout','uses' => 'AuthController@logout']);
 
 /**------------------------------< Start Admin route with Auth >-----------------------------------*/
 
-Route::group(['middleware' => ['auth']], function() {
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function() {
 
-    Route::get('/dashboard',['as'=>'dashboard','uses' => 'DashboardController@dashboardView']);
+    Route::get('dashboard',[DashboardController::class, 'dashboardView'])->name('dashboard');
+    Route::get('cms-pages', [CmsPagesController::class, 'cmsPagesListView'])->name('cms.list');
+    Route::match(['get','post'],'/cms-pages/edit/{id}', [CmsPagesController::class, 'cmsPagesEdit'])->name('cms.edit');
+    Route::match(['get','post'],'/faqs/add', [FaqController::class, 'add'])->name('faq.add');
+    Route::match(['get','post'],'/faqs/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
+    Route::get('faqs/list', [FaqController::class, 'list'])->name('faq.list');
+    Route::get('faqs/delete/{id}', [FaqController::class, 'destroy'])->name('faq.delete');
 
 });
 /**------------------------------< / End Admin route with Auth >-----------------------------------*/
