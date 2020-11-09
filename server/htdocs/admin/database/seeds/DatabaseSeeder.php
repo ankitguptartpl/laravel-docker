@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(
             [
-//                UserSeeder::class, // Use to seed users table
-//                  CmsPagesSeeder::class,
+               UserSeeder::class, // Use to seed users table
+               CmsPagesSeeder::class,
             ]
         );
     }
